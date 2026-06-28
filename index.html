@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chhupa Hua Bharat - Yajurveda Flipbook</title>
+    <!-- Turn.js aur jQuery Libraries (Online bina load ke chalne ke liye) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            height: 100vh; font-family: sans-serif; color: white;
+        }
+        .header { margin-bottom: 20px; font-size: 20px; font-weight: bold; color: #ff9933; }
+        #flipbook { width: 300px; height: 450px; }
+        .page {
+            background-color: #f5f5dc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .page img { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+    <div class="header">📚 छूपा हुआ भारत - यजुर्वेद (Digital Flipbook)</div>
+
+    <div id="flipbook">
+        <!-- Panna 1: Cover -->
+        <div class="page"><img src="https://picsum.photos/300/450?random=1" alt="Cover"></div>
+        <!-- Panna 2 -->
+        <div class="page"><img src="https://picsum.photos/300/450?random=2" alt="Page 2"></div>
+        <!-- Panna 3 -->
+        <div class="page"><img src="https://picsum.photos/300/450?random=3" alt="Page 3"></div>
+        <!-- Panna 4 -->
+        <div class="page"><img src="https://picsum.photos/300/450?random=4" alt="Page 4"></div>
+    </div>
+
+    <script>
+        // Flipbook Animation chalu karne ka code
+        $("#flipbook").turn({
+            width: 300,
+            height: 450,
+            autoCenter: true
+        });
+    </script>
+
+</body>
+</html>
