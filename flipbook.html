@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VED-01: ऋग्वेद मण्डल 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #1a1a1a; overflow: hidden; font-family: sans-serif; }
+        #loader {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            color: #fff; font-size: 18px; z-index: 100; text-align: center;
+        }
+        #flipbook { width: 100vw; height: 100vh; }
+       .page-info {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(0,0,0,0.7); color: white; padding: 8px 15px;
+            border-radius: 20px; font-size: 14px; z-index: 50;
+        }
+    </style>
+</head>
+<body>
+    <div id="loader">📖 ग्रंथ खुल रहा है...<br><span id="percent">0%</span></div>
+    <div id="flipbook"></div>
+    <div class="page-info">Page <span id="current">1</span> / <span id="total">0</span></div>
+
+    <script>
+        // === YAHAN APNE 1008 LINKS PASTE KARO ===
+        const pages = [
+            https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js
+            //... baaki sabhi links
+        ];
+        // ==========================================
+
+        document.getElementById('total').innerText = pages.length;
+        const loader = document.getElementById('loader');
+        const percentEl = document.getElementById('percent');
+
+        const pageFlip = new St.PageFlip(document.getElementById("flipbook"), {
+            width: 550,
+            height: 733,
+            size: "stretch",
+            minWidth: 315,
+            maxWidth: 1000,
+            minHeight: 420,
+            maxHeight: 1350,
+            maxShadowOpacity: 0.5,
+            showCover: true,
+            mobileScrollSupport: false,
+            usePortrait: true
+        });
+
+        // Lazy Loading Logic
+        let loadedImages = 0;
+        const totalImages = pages.length;
+
+        function updateLoader() {
+            loadedImages++;
+            const percent = Math.round(loadedImages / totalImages * 100);
+            percentEl.innerText = percent + '%';
+            if (loadedImages >= 3) loader.style.display = 'none';
+        }
+
+        // Pehle sirf 3 image preload karo
+        const imageObjects = pages.map((url, index) => {
+            const img = new Image();
+            if (index < 3) {
+                img.src = url;
+                img.onload = updateLoader;
+                img.onerror = updateLoader;
+            } else {
+                img.dataset.src = url; // Baaki ke liye baad mein load karenge
+            }
+            return img.src || img.dataset.src;
+        });
+
+        pageFlip.loadFromImages(imageObjects);
+
+        // Page flip hone par agle page load karo
+        pageFlip.on('flip', (e) => {
+            const currentPage = e.data + 1;
+            document.getElementById('current').innerText = currentPage;
+
+            // Agle 2 page preload karo
+            for (let i = currentPage; i < currentPage + 2 && i < pages.length; i++) {
+                if (imageObjects[i] &&!imageObjects[i].startsWith('http')) {
+                    const tempImg = new Image();
+                    tempImg.src = imageObjects[i];
+                    imageObjects[i] = tempImg.src;
+                    tempImg.onload = updateLoader;
+                }
+            }
+        });
+
+        // Pehla page set karo
+        document.getElementById('current').innerText = '1';
+    </script>
+</body>
+</html>
