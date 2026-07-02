@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VED-01: ऋग्वेद मण्डल 1</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #2c1810; font-family: sans-serif; overflow: hidden; }
+        .header {
+            background: linear-gradient(90deg, #1a0f0a, #2c1810);
+            color: #ffd700; padding: 12px; text-align: center; 
+            font-size: 16px; font-weight: bold; border-bottom: 2px solid #ffd700;
+            position: fixed; top: 0; width: 100%; z-index: 100;
+        }
+        .viewer {
+            width: 100vw; height: calc(100vh - 50px); 
+            border: none; margin-top: 50px;
+        }
+        .loader {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            color: #ffd700; font-size: 18px; text-align: center; z-index: 50;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">📚 VED-01: ऋग्वेद संहिता - मण्डल 1 | छुपा हुआ भारत</div>
+    <div class="loader" id="loader">📖 ग्रंथ लोड हो रहा है...</div>
+    
+    <iframe 
+        class="viewer"
+        src="https://drive.google.com/file/d/1VmBX3iyMdRzKiWd5krkCaWjdnHE6xrNI/preview"
+        allow="autoplay"
+        onload="document.getElementById('loader').style.display='none'">
+    </iframe>
+</body>
+</html>
