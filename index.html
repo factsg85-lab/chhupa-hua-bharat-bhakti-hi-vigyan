@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chhupa Hua Bharat - Flipbook</title>
+    <script src="https://cdn.jsdelivr.net/gh/deepakness/pageflip@main/js/pageflip.browser.js"></script>
+    <style>
+        body { margin: 0; background: #222; font-family: sans-serif; }
+        #flipbook { height: 100vh; }
+        .loading { color: white; text-align: center; padding-top: 45vh; }
+    </style>
+</head>
+<body>
+    <div id="flipbook"><div class="loading">Loading Flipbook...</div></div>
+    <script>
+        // COLAB SE JO LINKS MILENGE WO YAHAN PASTE KARNE HAIN
+        const pages = [
+            "https://i.ibb.co/xxxx/page1.jpg",
+            "https://i.ibb.co/xxxx/page2.jpg",
+        ];
+        
+        const pageFlip = new St.PageFlip(document.getElementById('flipbook'), {
+            width: 550, 
+            height: 733, 
+            size: "stretch", 
+            showCover: true,
+            mobileScrollSupport: true
+        });
+        pageFlip.loadFromImages(pages);
+    </script>
+</body>
+</html>
