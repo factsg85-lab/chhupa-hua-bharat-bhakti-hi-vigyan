@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shankaracharya Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+    h1 { text-align: center; }
+    .book { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .book a { text-decoration: none; color: #c0392b; font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>📚 Shankaracharya Granth Library</h1>
+  <div id="list"></div>
+
+  <script>
+    // YAHAN NAYI PDF KA LINK DAALTE JAO
+    const books = [
+      { name: "rigveda, link: "https://drive.google.com/file/d/1VmBX3iyMdRzKiWd5krkCaWjdnHE6xrNI/view?usp=drivesdk" },
+      { name: "Bhaja Govindam", link: "DRIVE_LINK_2_DAALO" },
+      // Nayi book = Nayi line yahan add kar do
+      // { name: "Tattva Bodha", link: "DRIVE_LINK_3_DAALO" },
+    ];
+
+    const list = document.getElementById('list');
+    books.forEach(book => {
+      // Google Drive ka direct preview link with flipbook effect
+      const flipLink = book.link.replace('/view', '/preview');
+      list.innerHTML += `<div class="book"><a href="${flipLink}" target="_blank">${book.name}</a></div>`;
+    });
+  </script>
+</body>
+</html>
